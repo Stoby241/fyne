@@ -1034,6 +1034,10 @@ func (b *boundStringListItem) Get() (string, error) {
 	b.lock.Lock()
 	defer b.lock.Unlock()
 
+	if b.index >= len(*b.val) {
+		return "", errParseFailed
+	}
+
 	return (*b.val)[b.index], nil
 }
 
